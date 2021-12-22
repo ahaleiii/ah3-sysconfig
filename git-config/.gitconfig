@@ -1,0 +1,20 @@
+[user]
+    name = Alan Hale III
+[alias]
+    sw = switch
+    co = checkout
+    ci = commit
+    st = status --short --branch --untracked-files=all
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short --max-count=15
+
+    # tracks the file without staging it
+    # https://git-scm.com/docs/git-add#Documentation/git-add.txt---intent-to-add
+    # https://stackoverflow.com/a/15653161/2410990
+    add-unstaged = add --intent-to-add
+
+    # check for whitespace issues
+    # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---check
+    whitespace = diff --check
+[fetch]
+    prune = true
