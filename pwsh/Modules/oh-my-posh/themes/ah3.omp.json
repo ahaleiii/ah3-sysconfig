@@ -44,7 +44,13 @@
           "background": "#a00000",
           "template": " {{ .Path }} ",
           "properties": {
-            "style": "full"
+            "style": "agnoster_short",
+            "hide_root_location": false,
+            "max_depth": 4,
+            "mapped_locations": {
+              "C:/git": "\ue702 ",
+              "C:/github": "\ue709 "
+            }
           }
         },
         {
