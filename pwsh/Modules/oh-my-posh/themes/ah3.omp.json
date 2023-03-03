@@ -1,9 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
   "final_space": true,
-  "console_title":true,
-  "console_title_style": "template",
-  "console_title_template": "{{if .Root}}Admin: {{end}}{{.Shell}}> {{.Folder}}",
+  "console_title_template": "{{if .Root}}Admin: {{end}}{{.Shell}} ❯ {{.Folder}}",
   "blocks": [
     {
       "type": "prompt",
@@ -14,41 +13,36 @@
           "style": "plain",
           "foreground": "#ffffff",
           "background": "#0077c2",
-          "properties": {
-            "postfix": " \uE0B1"
-          }
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} \ue0b1"
         },
         {
           "type": "root",
           "style": "plain",
           "foreground": "#ffffff",
           "background": "#0077c2",
-          "properties": {
-            "root_icon": "Admin",
-            "postfix": ":"
-          }
+          "template": " Admin:"
         },
         {
           "type": "shell",
           "style": "plain",
           "foreground": "#ffffff",
           "background": "#0077c2",
-          "properties": {
-            "postfix": " \uE0B1"
-          }
+          "template": " {{ .Name }} \ue0b1"
         },
         {
           "type": "session",
           "style": "powerline",
           "foreground": "#ffffff",
-          "background": "#0077c2"
+          "background": "#0077c2",
+          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} "
         },
         {
           "type": "path",
           "style": "powerline",
-          "powerline_symbol": "\uE0B0",
+          "powerline_symbol": "\ue0b0",
           "foreground": "#ffffff",
           "background": "#a00000",
+          "template": " {{ .Path }} ",
           "properties": {
             "style": "full"
           }
@@ -56,26 +50,24 @@
         {
           "type": "dotnet",
           "style": "powerline",
-          "powerline_symbol": "\uE0B0",
+          "powerline_symbol": "\ue0b0",
           "foreground": "#ffffff",
           "background": "#610099",
+          "template": ".NET {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
           "properties": {
-            "prefix": ".NET ",
             "display_mode": "files"
           }
         },
         {
-          // https://ohmyposh.dev/docs/git
           "type": "git",
           "style": "powerline",
-          "powerline_symbol": "\uE0B0",
+          "powerline_symbol": "\ue0b0",
           "foreground": "#ffffff",
           "background": "#00530b",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 <#ff4444>{{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 <#4eff65>{{ .Staging.String }}</>{{ end }} ",
           "properties": {
-            "display_upstream_icon": true,
-            "git_icon": "\uF7A1 ",
-            "working_color": "#ff4444",
-            "staging_color": "#4eff65"
+            "fetch_upstream_icon": true,
+            "git_icon": "\uf7a1 "
           }
         }
       ]
@@ -83,19 +75,19 @@
     {
       "type": "prompt",
       "alignment": "right",
+      "overflow": "hide",
       "segments": [
         {
           "type": "executiontime",
           "style": "plain",
+          "powerline_symbol": "\ue0b2",
           "invert_powerline": true,
-          "powerline_symbol": "\uE0B2",
           "foreground": "#a7a400",
           "background": "#333333",
+          "template": " <#ffff00>\ufbab</> {{ .FormattedMs }} |",
           "properties": {
-            "threshold": 1,
             "style": "houston",
-            "prefix": " <#ffff00>\ufbab</> ",
-            "postfix": " |"
+            "threshold": 1
           }
         },
         {
@@ -103,35 +95,35 @@
           "style": "plain",
           "foreground": "#a7a400",
           "background": "#333333",
+          "template": " <#ffff00>\ue385</> {{ .CurrentDate | date .Format }} ",
           "properties": {
-            "time_format": "3:04:05.000 PM",
-            "prefix": " <#ffff00>\uE385</> "
+            "time_format": "3:04:05.000 PM"
           }
         }
       ]
     },
     {
-      "type": "newline"
-    },
-    {
       "type": "prompt",
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
           "type": "exit",
           "style": "plain",
           "foreground": "#ffffff",
-          "powerline_symbol": "\uE0B0",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#e91e63{{ end }}"
+          ],
+          "template": "$❯",
           "properties": {
-            "display_exit_code": false,
-            "always_enabled": true,
-            "error_color": "#e91e63",
-            "color_background": false,
-            "prefix": "$",
-            "postfix": "\u276F"
+            "always_enabled": true
           }
         }
       ]
     }
-  ]
+  ],
+  "secondary_prompt": {
+    "foreground": "#ffffff",
+    "template": " ❯ "
+  }
 }

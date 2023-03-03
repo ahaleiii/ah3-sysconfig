@@ -1,4 +1,15 @@
-function GetDirectory($location) {
+# oh-my-posh setup
+# https://ohmyposh.dev/docs/installation/windows
+# winget install JanDeDobbeleer.OhMyPosh -s winget
+# winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/ah3.omp.json" | Invoke-Expression
+
+# terminal icons setup
+# https://github.com/devblackops/Terminal-Icons
+# install: Install-Module -Name Terminal-Icons -Repository PSGallery
+Import-Module -Name Terminal-Icons
+
+function Get-Ah3ChildItem($location) {
     if ([string]::IsNullOrWhiteSpace($location)) {
         $location = Get-Location
     }
@@ -7,13 +18,21 @@ function GetDirectory($location) {
     Get-ChildItem -Path $location -Force -Attributes !S
 }
 
+function Set-LocationToGitDirectory {
+    Set-Location 'C:\git'
+}
+
+function Set-LocationToGithubDirectory {
+    Set-Location 'C:\github'
+}
+
 function Get-WhichCommand($commandName) {
     if ([string]::IsNullOrWhiteSpace($commandName)) {
         throw "No command specified."
     }
 
     $command = Get-Command $commandName
-    Write-Information ($command.Source) -InformationAction Continue
+    return $command.Source
 }
 
 # https://devblogs.microsoft.com/scripting/powertip-find-all-powershell-profile-locations/
@@ -38,5 +57,13 @@ function Get-RandomHexString([int]$length = 16) {
     } | Join-String
 }
 
-Set-Alias d GetDirectory
+# Aliases
+Set-Alias d Get-Ah3ChildItem
+Set-Alias dgit Set-LocationToGitDirectory
+Set-Alias dgithub Set-LocationToGithubDirectory
 Set-Alias which Get-WhichCommand
+
+# TODO:
+# git-push
+# git-open-remote
+# git-complete
