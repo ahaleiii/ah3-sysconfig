@@ -13,7 +13,7 @@
           "style": "plain",
           "foreground": "#ffffff",
           "background": "#0077c2",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} \ue0b1"
+          "template": " {{.Icon}} \ue0b1"
         },
         {
           "type": "root",

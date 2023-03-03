@@ -2,7 +2,11 @@
 # https://ohmyposh.dev/docs/installation/windows
 # winget install JanDeDobbeleer.OhMyPosh -s winget
 # winget upgrade JanDeDobbeleer.OhMyPosh -s winget
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/ah3.omp.json" | Invoke-Expression
+if ($IsWindows) {
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/ah3.omp.json" | Invoke-Expression
+} else {
+    oh-my-posh init pwsh --config "/mnt/c/Users/ahale/AppData/Local/Programs/oh-my-posh/themes/ah3.omp.json" | Invoke-Expression
+}
 
 # https://ohmyposh.dev/docs/segments/git
 # https://github.com/dahlbyk/posh-git
@@ -25,11 +29,19 @@ function Get-Ah3ChildItem($location) {
 }
 
 function Set-LocationToGitDirectory {
-    Set-Location 'C:\git'
+    if ($IsWindows) {
+        Set-Location 'C:\git'
+    } else {
+        Set-Location '/mnt/c/git'
+    }
 }
 
 function Set-LocationToGithubDirectory {
-    Set-Location 'C:\github'
+    if ($IsWindows) {
+        Set-Location 'C:\github'
+    } else {
+        Set-Location '/mnt/c/github'
+    }
 }
 
 function Get-WhichCommand($commandName) {
