@@ -143,6 +143,11 @@ function New-AzdoRestApiHeader([string]$PAT) {
     return @{ Authorization = $auth }
 }
 
+# https://ifconfig.me/
+function Get-MyPublicIp {
+    Invoke-RestMethod -Uri 'http://ifconfig.me/ip'
+}
+
 # Aliases
 Set-Alias d Get-Ah3ChildItem
 Set-Alias dgit Set-LocationToGitDirectory
@@ -151,3 +156,6 @@ Set-Alias which Get-WhichCommand
 Set-Alias git-push Push-GitBranch
 Set-Alias git-open-remote Open-GitRemote
 Set-Alias git-complete Complete-GitUnitOfWork
+Set-Alias myip Get-MyPublicIp
+Set-Alias getip Get-MyPublicIp
+Set-Alias Get-PublicIp Get-MyPublicIp
