@@ -45,3 +45,23 @@ If Ubuntu version is 22.10, the Ubuntu repository can be used for .NET 6 and 7.
 
 - <https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.3#installation-via-package-repository>
 - `sudo apt-get install -y powershell`
+
+## oh-my-posh
+
+<https://ohmyposh.dev/docs/installation/linux>
+
+### Install Homebrew
+
+- <https://docs.brew.sh/Homebrew-on-Linux>
+- `sudo apt-get install -y build-essential curl file git`
+- `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+- `test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"`
+- `test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
+- `test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile`
+- `echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile`
+
+### Install oh-my-posh
+
+- `brew install jandedobbeleer/oh-my-posh/oh-my-posh`
+- To update: `brew update && brew upgrade oh-my-posh`
+- Add to `~/.profile`: `eval "$(oh-my-posh init bash --config '/mnt/c/Users/ahale/AppData/Local/Programs/oh-my-posh/themes/ah3.omp.json')"`
