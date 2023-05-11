@@ -34,7 +34,7 @@
           "style": "powerline",
           "foreground": "#ffffff",
           "background": "#0077c2",
-          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} "
+          "template": " {{ if .SSHSession }}\udb80\udf18 {{ end }}{{ .UserName }}@{{ .HostName }} "
         },
         {
           "type": "path",
@@ -44,13 +44,13 @@
           "background": "#a00000",
           "template": " {{ .Path }} ",
           "properties": {
-            "style": "agnoster_short",
             "hide_root_location": false,
-            "max_depth": 4,
             "mapped_locations": {
               "C:/git": "\ue702 ",
               "C:/github": "\ue709 "
-            }
+            },
+            "max_depth": 4,
+            "style": "agnoster_short"
           }
         },
         {
@@ -73,7 +73,7 @@
           "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 <#ff4444>{{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 <#4eff65>{{ .Staging.String }}</>{{ end }} ",
           "properties": {
             "fetch_upstream_icon": true,
-            "git_icon": "\uf7a1 "
+            "git_icon": "\udb80\udea2 "
           }
         }
       ]
@@ -81,7 +81,6 @@
     {
       "type": "prompt",
       "alignment": "right",
-      "overflow": "hide",
       "segments": [
         {
           "type": "executiontime",
@@ -90,7 +89,7 @@
           "invert_powerline": true,
           "foreground": "#a7a400",
           "background": "#333333",
-          "template": " <#ffff00>\ufbab</> {{ .FormattedMs }} |",
+          "template": " <#ffff00>\udb81\udead</> {{ .FormattedMs }} |",
           "properties": {
             "style": "houston",
             "threshold": 1
@@ -106,12 +105,12 @@
             "time_format": "3:04:05.000 PM"
           }
         }
-      ]
+      ],
+      "overflow": "hide"
     },
     {
       "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
           "type": "exit",
@@ -125,7 +124,8 @@
             "always_enabled": true
           }
         }
-      ]
+      ],
+      "newline": true
     }
   ],
   "secondary_prompt": {
