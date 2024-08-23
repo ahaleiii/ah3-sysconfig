@@ -116,7 +116,7 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "exit",
+          "type": "text",
           "style": "plain",
           "foreground": "#ffffff",
           "foreground_templates": [
