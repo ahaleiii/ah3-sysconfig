@@ -1,6 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 2,
+  "auto_upgrade": true,
+  "disable_notice": true,
   "final_space": true,
   "console_title_template": "{{if .Root}}Admin: {{end}}{{.Shell}} ❯ {{.Folder}}",
   "blocks": [
@@ -72,6 +74,7 @@
           "background": "#00530b",
           "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 <#ff4444>{{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 <#4eff65>{{ .Staging.String }}</>{{ end }} ",
           "properties": {
+            "source": "pwsh",
             "fetch_upstream_icon": true,
             "git_icon": "\udb80\udea2 "
           }
